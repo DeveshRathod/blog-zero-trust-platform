@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blog-auth-db
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: zero-trust-platform
+spec:
+  project: blog-platform
+  source:
+    repoURL: https://github.com/DeveshRathod/blog-zero-trust-platform
+    targetRevision: main
+    path: apps/auth-db
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: zt-auth-db
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cache-db
+  namespace: zt-cache
+  labels:
+    app: cache-db
+spec:
+  serviceName: cache-db-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cache-db
+  template:
+    metadata:
+      labels:
+        app: cache-db
+    spec:
+      serviceAccountName: cache-db
+      containers:
+        - name: cache-db
+          image: devesh11411/blog-cache:v1.0.0
+          ports:
+            - containerPort: 6379
+          livenessProbe:
+            exec:
+              command: [redis-cli, ping]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command: [redis-cli, ping]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 196Mi

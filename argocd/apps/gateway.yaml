@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blog-gateway
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: zero-trust-platform
+spec:
+  project: blog-platform
+  source:
+    repoURL: https://github.com/DeveshRathod/blog-zero-trust-platform
+    targetRevision: main
+    path: apps/gateway
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: zt-gateway
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false

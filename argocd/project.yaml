@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: blog-platform
+  namespace: argocd
+spec:
+  description: Zero-Trust Microservices Blog Platform
+  sourceRepos:
+    - https://github.com/DeveshRathod/blog-zero-trust-platform
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: zt-gateway
+    - server: https://kubernetes.default.svc
+      namespace: zt-auth
+    - server: https://kubernetes.default.svc
+      namespace: zt-auth-db
+    - server: https://kubernetes.default.svc
+      namespace: zt-posts
+    - server: https://kubernetes.default.svc
+      namespace: zt-posts-db
+    - server: https://kubernetes.default.svc
+      namespace: zt-cache
+    - server: https://kubernetes.default.svc
+      namespace: zt-email
+    - server: https://kubernetes.default.svc
+      namespace: zt-web
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

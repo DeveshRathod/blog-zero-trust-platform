@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blog-frontend-config
+  namespace: zt-web
+data:
+  # nginx proxies /api/* to api-gateway at runtime via entrypoint.sh.
+  # Full FQDN because blog-frontend lives in zt-web, api-gateway in zt-gateway.
+  API_GATEWAY_URL: "http://api-gateway.zt-gateway.svc.cluster.local:8080"

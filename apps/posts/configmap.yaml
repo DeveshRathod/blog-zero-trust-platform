@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: blog-service-config
+  namespace: zt-posts
+data:
+  PORT: "4002"
+  SERVICE_NAME: "blog-service"
+  MONGO_URI: "mongodb://posts-db.zt-posts-db.svc.cluster.local:27017/blogdb"
+  REDIS_URL: "redis://cache-db.zt-cache.svc.cluster.local:6379"
+  EMAIL_SERVICE_URL: "http://email-service.zt-email.svc.cluster.local:4003"
+  CORS_ORIGIN: "*"
+  CHAOS_ERROR_RATE: "0"
+  CHAOS_LATENCY_MS: "0"

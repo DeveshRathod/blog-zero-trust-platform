@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: email-service-config
+  namespace: zt-email
+data:
+  PORT: "4003"
+  SERVICE_NAME: "email-service"
+  CORS_ORIGIN: "*"
+  FRONTEND_URL: "http://localhost"
+  CHAOS_ERROR_RATE: "0"
+  CHAOS_LATENCY_MS: "0"

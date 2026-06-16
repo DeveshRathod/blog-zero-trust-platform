@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-db-config
+  namespace: zt-auth-db
+data:
+  POSTGRES_DB: "authdb"
+  POSTGRES_USER: "authuser"
