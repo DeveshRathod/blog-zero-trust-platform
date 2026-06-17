@@ -16,6 +16,18 @@ spec:
         app: blog-service
     spec:
       serviceAccountName: blog-service
+      initContainers:
+        - name: wait-for-posts-db
+          image: busybox:1.35
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z posts-db.zt-posts-db.svc.cluster.local 27017; do
+                echo "waiting for posts-db...";
+                sleep 3;
+              done;
+              echo "posts-db ready"
       containers:
         - name: blog-service
           image: devesh11411/blog-posts:v1.0.0
@@ -45,7 +57,7 @@ spec:
             httpGet:
               path: /readyz
               port: 4002
-            initialDelaySeconds: 5
+            initialDelaySeconds: 15
             periodSeconds: 10
           resources:
             requests:
