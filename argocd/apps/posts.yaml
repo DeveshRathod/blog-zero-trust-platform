@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
   labels:
     app.kubernetes.io/part-of: zero-trust-platform
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: blog-platform
   source:
