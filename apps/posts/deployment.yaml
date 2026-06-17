@@ -18,12 +18,13 @@ spec:
       serviceAccountName: blog-service
       initContainers:
         - name: wait-for-posts-db
-          image: busybox:1.35
+          image: mongo:7
           command:
             - sh
             - -c
             - |
-              until nc -z posts-db.zt-posts-db.svc.cluster.local 27017; do
+              until mongosh --host posts-db.zt-posts-db.svc.cluster.local \
+                --eval "db.adminCommand('ping')" --quiet 2>/dev/null; do
                 echo "waiting for posts-db...";
                 sleep 3;
               done;
