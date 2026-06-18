@@ -14,3 +14,4 @@ data:
   EMAIL_SERVICE_URL: "http://email-service.zt-email.svc.cluster.local:4003"
   FRONTEND_URL: "http://localhost"
   CORS_ORIGIN: "*"
+  OTLP_ENDPOINT: "http://jaeger-collector.istio-system.svc.cluster.local:4318/v1/traces"

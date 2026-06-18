@@ -14,3 +14,4 @@ data:
   RATE_LIMIT_PER_MINUTE: "120"
   SEED_DEMO_DATA: "true"
   FRONTEND_URL: "http://localhost"
+  OTLP_ENDPOINT: "http://jaeger-collector.istio-system.svc.cluster.local:4318/v1/traces"

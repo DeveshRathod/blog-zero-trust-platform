@@ -12,3 +12,4 @@ data:
   CORS_ORIGIN: "*"
   CHAOS_ERROR_RATE: "0"
   CHAOS_LATENCY_MS: "0"
+  OTLP_ENDPOINT: "http://jaeger-collector.istio-system.svc.cluster.local:4318/v1/traces"
