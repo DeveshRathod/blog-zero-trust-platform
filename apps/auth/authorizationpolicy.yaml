@@ -10,3 +10,21 @@ spec:
         - source:
             principals:
               - "cluster.local/ns/zt-auth/sa/waypoint"
+
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-auth-waypoint
+  namespace: zt-auth
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: waypoint
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces:
+              - zt-gateway
