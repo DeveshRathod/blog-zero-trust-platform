@@ -8,5 +8,5 @@ spec:
   rules:
     - from:
         - source:
-            namespaces:
-              - zt-auth
+            principals:
+              - "cluster.local/ns/zt-auth/sa/auth-service"

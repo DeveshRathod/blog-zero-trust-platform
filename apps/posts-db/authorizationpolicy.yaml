@@ -8,5 +8,5 @@ spec:
   rules:
     - from:
         - source:
-            namespaces:
-              - zt-posts
+            principals:
+              - "cluster.local/ns/zt-posts/sa/blog-service"
